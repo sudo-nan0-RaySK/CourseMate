@@ -6,6 +6,6 @@ const cu_ass_schema = new Schema({
     c_id:String
 });
 
-const cu_ass= mongoose.model('cu_ass'.cu_ass_schema);
+const cu_ass= mongoose.model('cu_ass',cu_ass_schema);
 
 module.exports= cu_ass;

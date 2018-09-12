@@ -21,8 +21,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Setting Up Mongoose MongoDB Connection
 console.log(mongoose.connection.readyState);
-mongoose.connect('mongodb://localhost:27017/coursemate',()=>{
-  console.log('Now Connected to MongoDB');
+mongoose.connect('mongodb://localhost:27017/coursemate',(err)=>{
+  if(err){
+    console.error(err);
+  }
+  else{
+    console.log('Now Connected to MongoDB');
+  }
+  
 });
 
 app.use('/', indexRouter);
