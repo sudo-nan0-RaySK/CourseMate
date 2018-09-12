@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var mongoose= require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -18,6 +18,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Setting Up Mongoose MongoDB Connection
+console.log(mongoose.connection.readyState);
+mongoose.connect('mongodb://localhost:27017/coursemate',()=>{
+  console.log('Now Connected to MongoDB');
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
