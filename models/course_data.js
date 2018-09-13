@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const Schema= mongoose.Schema;
 
 const course_data_schema= new Schema({
-    id:String,
+    c_id:String,
+    u_id:String,
     s_date:Date,
     completePercent:Number,
     curr_week:Number,
