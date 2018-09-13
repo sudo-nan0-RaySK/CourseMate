@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Add Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        td{
+            border-collapse: collapse;
+            border:2px solid red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+ <center>
+     <hr>
+    <!--User-->
+    <h2>User</h2>
+    <form method="POST" action="/addData/user">
+        <table id="user_table"> 
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="uname"></td>
+            </tr>
+            <tr>
+                <td>User ID</td>
+                <td><input type="text" name="uid"></td>
+            </tr>
+            <tr>
+                <td>Courses Done</td>
+                <td><input type="text" name="cdone"></td>
+            </tr>
+            <tr>
+                <td>Courses Ongoing</td>
+                <td><input type="text" name="cgoing"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="text" name="password"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="SUBMIT"></td>
+                <td><input type="reset" value="RESET"></td>
+            </tr>
+        </table>
+    </form>
+    <hr>
+    <!--Course-->
+    <h2>Course</h2>
+    <form method="POST" action="/addData/course">
+        <table id="user_table"> 
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="cname"></td>
+            </tr>
+            <tr>
+                <td>Weeks</td>
+                <td><input type="text" name="weeks"></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><input type="text" name="descrip"></td>
+            </tr>
+            <tr>
+                <td>Instructor</td>
+                <td><input type="text" name="instructor"></td>
+            </tr>
+            <tr>
+                <td>Videos</td>
+                <td><input type="text" name="videos"></td>
+            </tr>
+            <tr>
+                <td>Data</td>
+                <td><input type="text" name="data"></td>
+            </tr>
+            <tr>
+                <td>Course ID</td>
+                <td><input type="text" name="cid"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="SUBMIT"></td>
+                <td><input type="reset" value="RESET"></td>
+            </tr>
+        </table>
+    </form>
+    <hr>
+    <!--Course Ratings-->
+    <h2>Course Ratings</h2>
+    <form method="POST" action="/addData/cu_ratings">
+        <table id="user_table"> 
+            <tr>
+                <td>User ID</td>
+                <td><input type="text" name="cu_ratings_uid"></td>
+            </tr>
+            <tr>
+                <td>Course ID</td>
+                <td><input type="text" name="cu_ratings_cid"></td>
+            </tr>
+            <tr>
+                <td>Ratings</td>
+                <td><input type="text" name="cu_ratings_ratings"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="SUBMIT"></td>
+                <td><input type="reset" value="RESET"></td>
+            </tr>
+        </table>
+    </form>
+    <hr>
+    <!--Course Data-->
+    <h2>Course Data</h2>
+    <form method="POST" action="/addData/course_data">
+        <table id="user_table"> 
+            <tr>
+                <td>Start Date</td>
+                <td><input type="text" name="sdate"></td>
+            </tr>
+            <tr>
+                <td>Completion Percentage</td>
+                <td><input type="text" name="completePercentage"></td>
+            </tr>
+            <tr>
+                <td>Curr Week</td>
+                <td><input type="text" name="curr_week"></td>
+            </tr>
+            <tr>
+                <td>Curr Vid</td>
+                <td><input type="text" name="curr_vid"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="SUBMIT"></td>
+                <td><input type="reset" value="RESET"></td>
+            </tr>
+        </table>
+    </form>
+    <hr>
+    <!--Course Association-->
+    <h2>Course Association</h2>
+    <form method="POST" action="/addData/cu_ass">
+        <table id="user_table"> 
+            <tr>
+                <td>User ID</td>
+                <td><input type="text" name="cu_ass_uid"></td>
+            </tr>
+            <tr>
+                <td>Course Data ID</td>
+                <td><input type="text" name="cu_ass_cdid"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="SUBMIT"></td>
+                <td><input type="reset" value="RESET"></td>
+            </tr>
+        </table>
+    </form>
+ </center>
+</body>
+</html>
