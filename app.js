@@ -8,6 +8,7 @@ var bodyParser= require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var addData= require('./routes/addData');
+var getRec= require('./routes/getRec');
 var app = express();
 
 // view engine setup
@@ -41,6 +42,7 @@ mongoose.connect('mongodb://localhost:27017/coursemate',(err)=>{
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/addData',addData);
+app.use('/getRec',getRec);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

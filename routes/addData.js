@@ -32,6 +32,16 @@ router.post('/user',(req,res,next)=>{
             res.send("User Saved Successfully!! "+doc);
         }
     });
+    Course.find().distinct('course_id',(err,cids)=>{
+        cids.forEach((cid)=>{
+            var temp= new cu_ratings({
+                u_id:req.body.uid,
+                course_id:cid,
+                ranking:null
+            });
+            temp.save();
+        })
+    });
 });
 
 /* POST /course */
@@ -55,6 +65,16 @@ router.post('/course',(req,res,next)=>{
             res.send(doc);
         }
     });
+    User.find().distinct('u_id',(err,uids)=>{
+        uids.forEach((uid)=>{
+            var temp= new cu_ratings({
+                u_id:uid,
+                course_id:req.body.cid,
+                ranking:null
+            });
+            temp.save();
+        });
+    });
 });
 
 /* POST /course_ratings */
@@ -65,12 +85,12 @@ router.post('/cu_ratings',(req,res,next)=>{
         course_id:form.cu_ratings_cid,
         ratings:Number(form.cu_ratings_ratings)
     });
-    CourseRatings.save((err,doc)=>{
+    cu_ratings.update({u_id:form.cu_ratings_uid,course_id:form.cu_ratings_cid},{ $set: { ratings:Number(form.cu_ratings_ratings) }},(err,doc)=>{
         if(err){
-            res.send(err);
+
         }
         else{
-            res.send(doc);
+            res.send('Successful rate!');
         }
     });
 });
