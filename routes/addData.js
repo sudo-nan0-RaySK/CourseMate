@@ -133,4 +133,27 @@ router.post('/cu_ass',(req,res,next)=>{
     });
 });
 
+/**router.get('/syncUp',(req,res)=>{
+    Course.find().distinct('course_id',(err,cids)=>{
+        var counter=0;
+       cids.forEach((cid)=>{
+        
+        User.find().distinct('user_id',(err,uids)=>{
+            counter++;
+            uids.forEach((uid)=>{
+                var tmp= new cu_ratings({
+                    u_id:uid,
+                    course_id:cid,
+                    ratings:null
+                });
+                
+                    tmp.save((err,doc)=>{
+                        console.log('Data Saved', doc);
+                    });
+            });
+        });
+       })
+    });
+});*/
+
 module.exports = router;
