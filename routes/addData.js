@@ -133,7 +133,7 @@ router.post('/cu_ass',(req,res,next)=>{
     });
 });
 
-/**router.get('/syncUp',(req,res)=>{
+router.get('/syncUp',(req,res)=>{
     Course.find().distinct('course_id',(err,cids)=>{
         var counter=0;
        cids.forEach((cid)=>{
@@ -154,6 +154,6 @@ router.post('/cu_ass',(req,res,next)=>{
         });
        })
     });
-});*/
+});
 
 module.exports = router;

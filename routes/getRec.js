@@ -19,6 +19,7 @@ router.get('/',(req,res)=>{
             }
         });
         var i=0;
+        console.log('keyset is', keyset);
         keyset.forEach((key)=>{
             matrix[i]=new Array();
             doc.forEach((obj)=>{
@@ -28,12 +29,13 @@ router.get('/',(req,res)=>{
             })
             i++;
         });
-        const transpose = a => R.map(c => R.map(r => r[c], a), R.keys(a[0]));
-        matrix=transpose(matrix);
+       // const transpose = a => R.map(c => R.map(r => r[c], a), R.keys(a[0]));
+        //matrix=transpose(matrix);
         console.log(matrix);
         matrix=normalizeCosines(matrix,matrix.length,matrix[0].length);
         console.log(matrix);
         var simSet=keySetMapping(keyset);
+        console.log('simset :',simSet);
         var rankmatrix= rankItems(matrix);
         console.log('=================================================');
         console.log(rankmatrix);
@@ -51,12 +53,14 @@ router.get('/',(req,res)=>{
 function normalizeCosines(matrix, rowSize, colSize){
     for(var i=0; i<rowSize; i++){
         var summation=0;
+        var size=0;
         for(var j=0; j<colSize; j++){
             if(matrix[i][j]!=null){
                 summation+=Number(matrix[i][j]);
+                size++;
             }
         }
-        var average= summation/colSize;
+        var average= summation/size;
         for(var j=0; j<colSize; j++){
             if(matrix[i][j]==null){
                 matrix[i][j]=0;
@@ -78,15 +82,14 @@ function similarity(item1,item2,userLength){
     var num1=0;
     var num2=0;
     for(var i=0; i<userLength; i++){
-        num1+=item1[i];
-        num2+=item2[i];
+        num1+=(item1[i]*item2[i]);
     }
     var num11=0, num22=0;
     for(var i=0; i<userLength; i++){
         num11+=(item1[i]*item1[i]);
         num22+=(item2[i]*item2[i]);
     }
-    var num= num1*num2;
+    var num= num1;
     var denum= Math.sqrt(num11)*Math.sqrt(num22);
     var pearsonCoeff= num/denum;
     return pearsonCoeff;
