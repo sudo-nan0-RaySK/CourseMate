@@ -20,8 +20,8 @@ router.post('/user',(req,res,next)=>{
         name:req.body.uname,
         user_id:req.body.uid,
         email:req.body.email,
-        course_done:req.body.cdone.split(","),
-        course_going:req.body.cgoing.split(","),
+        //course_done:req.body.cdone.split(","),
+        //course_going:req.body.cgoing.split(","),
         password:req.body.password
     });
     user.save((err,doc)=>{
@@ -29,6 +29,8 @@ router.post('/user',(req,res,next)=>{
             res.send(err);
         }
         else{
+            req.session.user_id=doc.user_id;
+            req.session.password=doc.password;
             res.send("User Saved Successfully!! "+doc);
         }
     });

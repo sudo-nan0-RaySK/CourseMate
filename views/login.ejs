@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>login and registration</title>
+	
+	<link href="stylesheets/stylecss.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<form method="POST" action="/addData/user">
+			<div class ="login-page">
+				<% if(typeof err != 'undefined') { %>
+					<h1><%= err %></h1>
+				<% }  %>
+					<div class ="form">
+						<h1>CourseMate</h1>
+						<div class="register-form form2">
+							<input name="uname" type="text" placeholder="Full Name"/>
+							<input name="uid" type="text" placeholder="UserID"/>
+							<input name="email" type="email" placeholder="Email"/>
+							<input type="text" placeholder="Password"/>
+							<button>create</button>
+							<p class="message">
+							Already Registered? <a href="" id="logIn">Login</a>
+							</p>
+						</div>
+		</form>
+		<form method="POST" action="/logIn">
+						<div class="login-form form1">
+							<input  name="uid" type="text" placeholder="UserID"/>
+							<input  name="password" type="text" placeholder="Password"/>
+							<button>login</button>
+						</div>
+						</div>
+				</div>
+		</form>
+	
+<script type="text/javascript" src="javascripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="javascripts/script.js"></script>
+	
+</body>
+</html>

@@ -6,13 +6,12 @@ const R = require('ramda');
 //MongoDB Stuff
 var cu_ratings= require('../models/cu_ratings');
 
-
 router.get('/',(req,res)=>{
     cu_ratings.find({}).sort('u_id').exec((err,doc)=>{
         //res.json(doc);
         //getting distinct keys:
         keyset=new Array();
-        matrix=new Array;
+        matrix=new Array();
         doc.forEach((obj)=>{
             if(!keyset.includes(obj.course_id)){
                 keyset.push(obj.course_id);
@@ -20,7 +19,7 @@ router.get('/',(req,res)=>{
         });
         var i=0;
         console.log('keyset is', keyset);
-        keyset.forEach((key)=>{
+        keyset.forEach((key)=>{ 
             matrix[i]=new Array();
             doc.forEach((obj)=>{
                 if(obj.course_id==key){

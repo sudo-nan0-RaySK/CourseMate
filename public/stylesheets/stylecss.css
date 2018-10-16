@@ -1,0 +1,81 @@
+@charset "utf-8";
+/* CSS Document */
+
+body
+{
+	background-image: linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,0.4)),url(../images/login.jpg);
+	height :100vh;
+	background-size: cover;
+	background-repeat: no-repeat;
+	backgroung-position: center;
+	
+
+}
+.login-page{
+	width :360px;
+	padding: 10% 0 0;
+	margin: auto;
+}
+
+.form{
+	font-family: "Roboto","Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+	postion: relative;
+	z-index: 1;
+	background: rgba(247,247,247,0.43);
+	max-width:360px;
+	margin: 0 auto 100px;
+	padding:20px 45px 50px 45px;
+	text-align: center;
+	border-radius:5px; 
+}
+.form h1
+{
+	color:rgba(236,236,236,0.85);
+	font-weigth:100;
+	font-size: 30px;
+}
+.form input{
+	
+	outline: 1;
+	background: rgba(240,240,240,0.92);
+	width:100%;
+	border:0px;
+	margin:0 0 15px;
+	padding:15px;
+	box-sizing:border-box;
+	font-size: 14px;
+	border-radius: 5px;
+}
+.form button
+{
+	text-transform: uppercase;
+	outline:0;
+	width:100%;
+	border:0;
+	padding:15px;
+	background-color: #424242;
+	color: #CDCDCD;
+		border-radius: 25px;
+	cursor: pointer;
+
+}
+.form button:hover
+{
+	color: #424242;
+	background-color: #CDCDCD;
+}
+.form .form1
+{
+	display: none;
+}
+.form .message
+{
+	margin:15px 0 0;
+	
+}
+.form .message a
+{
+	color : whitesmoke;
+	text-decoration: none;
+	
+}
