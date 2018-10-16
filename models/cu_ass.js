@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema= mongoose.Schema;
 
 const cu_ass_schema = new Schema({
-    u_id:String,
+    u_id:Number,
     cd_id:String
 });
 
