@@ -49,7 +49,16 @@ router.post('/rating',(req,res,next)=>{
       console.log('error occured');
     }
     else{
-        res.redirect('/getCourse?id='+id);
+        User.findOneAndUpdate({user_id:req.session.user_id},{$push: {course_done: id}},
+        (err,success)=>{
+          if(err){
+            res.send('Some error occured, please login again');
+          }
+          else{
+            res.redirect('/getCourse?id='+id);
+          }
+        })
+        
     }
   });
 });
