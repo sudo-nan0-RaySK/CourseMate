@@ -34,12 +34,21 @@ router.get('/',(req,res)=>{
         matrix=normalizeCosines(matrix,matrix.length,matrix[0].length);
         console.log(matrix);
         var simSet=keySetMapping(keyset);
+        var revSimSet= revKeySetMapping(keyset);
         console.log('simset :',simSet);
+        console.log('revSimSet :',revSimSet);
         var rankmatrix= rankItems(matrix);
         console.log('=================================================');
         console.log(rankmatrix);
         console.log('=================================================');
         printRankList(simSet,rankmatrix,rankmatrix.length);
+        
+        baller(req.session.user_id,simSet,revSimSet,rankmatrix).then((t)=>{
+            t.forEach((e)=>{
+                console.log(e);
+            });
+        })
+        //res.send(baller(req.session.user_id));
         res.json(doc);
     });
 
@@ -98,9 +107,16 @@ function similarity(item1,item2,userLength){
  * mapping course ids with numbers for easy calculations
  */
 function keySetMapping(keys){
-    set={}
+    var set={}
     for(var i=0;i<keys.length; i++){
         set[i]=keys[i];
+    }
+    return set;
+}
+function revKeySetMapping(keys){
+    var set={}
+    for(var i=0; i<keys.length; i++){
+        set[keys[i]]=i;
     }
     return set;
 }
@@ -142,5 +158,32 @@ function printRankList(keyMap,rankmatrix,rowSize){
         console.log('=============================================');
     }
 }
+/* get Reccomended set*/
+function getSet(user_id){
+    return new Promise(resolve=>{
+        cu_ratings.find({u_id:user_id}).sort('-ratings').exec((err,res)=>{
+            resolve(res);
+        });
+    })
+}
+
+async function baller(user_id,keyMap,revKeyMap,rankmatrix){
+    var res= await getSet(user_id);
+    //console.log(res);
+    var set = new Set();
+
+    res.forEach((e)=>{
+        set.add(e);
+    });
+
+    set.forEach((e)=>{
+        console.log("For item "+e.course_id+" , item no. "+revKeyMap[e.course_id]);
+        for(var j=0; j<rankmatrix.length-1; j++){
+            console.log("at rank ",j,keyMap[rankmatrix[revKeyMap[e.course_id]][j].item]);
+        }
+    });
+    return set;
+}
+
 
 module.exports = router;

@@ -9,6 +9,12 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var addData= require('./routes/addData');
 var getRec= require('./routes/getRec');
+var logIn= require('./routes/logIn');
+var session = require('express-session');
+var landing= require('./routes/landing');
+const User= require('./models/user');
+var logout = require('./routes/logout')
+var getCourse= require("./routes/getCourse");
 var app = express();
 
 // view engine setup
@@ -26,6 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({secret:"sshwshadshdi"}));
 
 //Setting Up Mongoose MongoDB Connection
 console.log(mongoose.connection.readyState);
@@ -41,8 +48,13 @@ mongoose.connect('mongodb://localhost:27017/coursemate',(err)=>{
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/logIn',logIn);
 app.use('/addData',addData);
-app.use('/getRec',getRec);
+app.use('/landing',checkLoggedIn,landing);
+app.use('/logout',checkLoggedIn,logout);
+app.use('/getCourse',checkLoggedIn,getCourse);
+app.use('/getRec',checkLoggedIn,getRec);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -58,5 +70,21 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+function checkLoggedIn(req,res,next){
+  User.findOne({user_id:req.session.user_id,password:req.session.password},(err,data)=>{
+    if(err){
+      res.send(err);
+    }else{
+      if(data){
+        next();
+      }
+      else{
+        console.log('redirected!');
+        res.redirect('/');
+      }
+    }
+  });
+}
 
 module.exports = app;
