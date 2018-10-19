@@ -27,6 +27,8 @@ router.get('/', checkLoggedIn,function(req, res, next) {
       res.render('course',
       {
         course:data.name,
+        content:data.data,
+        image:data.videos,
         instructor:data.instructor,
         rating_link:rating_link,
         start_link:start_link,
