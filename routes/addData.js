@@ -24,6 +24,8 @@ router.post('/user',(req,res,next)=>{
         //course_going:req.body.cgoing.split(","),
         password:req.body.password
     });
+    console.log('ADDED new user')
+    console.log(req.body)
     user.save((err,doc)=>{
         if(err){
             res.send(err);
